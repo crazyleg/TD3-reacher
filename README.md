@@ -62,12 +62,12 @@ Used to predict reward for a certain action made in a certain state.
 
 ### Hyper-parameters.
 
-policy_freq = 2 # Policy network is updated every Xnd step
-batch_size = 512 # N of samples sampled from buffer to step of training
-discount = 0.99 # reward discount
+policy_freq = 2 # Policy network is updated every Xnd step  
+batch_size = 512 # N of samples sampled from buffer to step of training. 
+discount = 0.99 # reward discount  
 replay_buffer = int(1e5) # size of replay buffer
-policy_noise = 0.1 # amount of noise added to predicted action
-tau = 5e-3 # How aggresive target network is updated at each update step (1 - fully update, 0 - no update)
+policy_noise = 0.1 # amount of noise added to predicted action  
+tau = 5e-3 # How aggresive target network is updated at each update step (1 - fully update, 0 - no update). 
 
 ![Reward fucntion vs episode][reward]
 
