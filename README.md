@@ -26,6 +26,17 @@ Proposed enviroment has 20 Reachers simultaneously. As this is a sync. process, 
  - actor.pth - Saved weights for Actor network from TD3
  - critic.pth - Saved weights from Critic networks from TD3
  
+## About the problem
+
+Reacher20 is a Udacity version of Reacher enviroment, containing 20 simultaneous Reacher agents.
+Each agent get a state vector of 33 floats, describing it's joints positions and speed as well as ball's position and speed.
+So in this case state is a (20, 33) vector.
+
+At every time step you have to perform an action for every agent, where action is a torque applied to the joint. Action is defined by floats in range (-1,1) and every agent needs 4 actions. So for 20 agent action space is (20,4).
+
+Agent get rewarded if its end is localized in a moving spherical space. Game is considerend solved when mean reward from 20 agents in the last 100 episodes is >= + 30.
+
+
 ## About the algo and results
 I've initially tried DDPG and A2C. While I had some progress and reward was growing, training process was quite unstable. As I was still in algo. exploratory phase, I tried TD3.
 It worked like a charm from the first attempt. Why search more?  https://arxiv.org/pdf/1802.09477.pdf
