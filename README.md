@@ -45,7 +45,7 @@ It worked like a charm from the first attempt. Why search for anything else?  ht
 
 1. Actor a.k.a. policy network.
 Simple Fully connected network. (33) -> (400) -> (300) -> (4).
-Imporant to note, last operation in Tang activation, that scales action output to required env. spec (-1,1).
+Imporant to note, last operation in Tanh activation, that scales action output to required env. spec (-1,1).
 You can do sigmoid and rescale if you prefer.
 
 Used to predict optimal action.
