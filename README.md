@@ -3,28 +3,18 @@
 [image1]: train_e5.gif "Untrained Agent"
 [image2]: train_e15.gif "In process of training"
 [image3]: trained.gif "Trained Agent"
+[reward]: reward.png "Plot of reward"
 
-
-
-# Deep Reinforcement Learning: Solving Reacher 20 env. from Udacity nanogedree with TD3 algo
+# TD3 Agent implementation. Solution for Reacher enviroment in Unity ML.
 
 
 ## TL;DR;
 
-Here's an implemenation of TD3 algo for Reacher 20 env. from Udacity course. First reaches reward 30 in 21 episode, gets a \[0,100\] mean of 30 in 100.
-Reacher 20 is basially 20 Reacher problems running in parallel. It was suggested that one can use async method like A3C here, I didn't like the idea. This env. is created in a syncronous
-way, so there's no benefit in using async methods, IMHO. So, TD3 method is just getting 20x expirience in a single sync. step and that make training very fast and stable.
+Repo with Implemenation of TD3 algo for Reacher 20 env. from Udacity course. First reaches reward 30 in 21 episode, gets a \[0,100\] mean of 30 in 100.  
 
+Proposed enviroment has 20 Reachers simultaneously. Is this is a sync. process, I choosed just a TD3 algo that collects expirience 20x faster with 20 hands. I see no sence in using async. approach here.
 
-## Samples of enviroment and training process.
-
-#### Untrained agent
-![Untrained Agent][image1]
-
-#### In process of training agent
-![Episode 15][image2]
-
-#### Trained agent
+#### Trained agent looks like this
 ![Trained Agent][image3]
 
 ## Description of files
@@ -35,6 +25,12 @@ way, so there's no benefit in using async methods, IMHO. So, TD3 method is just 
  - replay_byffer.py - Replay Buffer implementation from OpenAI Baselines 
  - actor.pth - Saved weights for Actor network from TD3
  - critic.pth - Saved weights from Critic networks from TD3
+ 
+## About the algo and results
+I've initially tried DDPG and A2C. While I had some progress and reward was growing, training process was quite unstable. As I was still in algo. exploratory phase, I tried TD3.
+It worked like a charm from the first attempt. Why search more?  https://arxiv.org/pdf/1802.09477.pdf
+
+![Reward fucntion vs episode][reward]
 
 ## Getting started
 1. Download the environment from one of the links below.
@@ -62,6 +58,19 @@ It's likely that you will need only standard package of numpy, pytorch to make t
 
 
 ## Things to improve
+1. TD3 is quite stable. I choosed a random stack of hyperparams and they worked for 20 and for 1 Reacher agent. Some tuning maeks sence
+2. Why not trying Prioritized Expririence Replay here?
+
+
+## Samples of enviroment and training process.
+
+#### Untrained agent
+![Untrained Agent][image1]
+
+#### Agent at episode 15 (half way trained)
+![Episode 15][image2]
+
+
 
 ## Acknowledgements
 
