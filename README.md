@@ -44,8 +44,9 @@ It worked like a charm from the first attempt. Why search for anything else?  ht
 ### Neural networks details
 
 1. Actor a.k.a. policy network.
-Simple Fully connected network. (33) -> (400) -> (300) -> (4).
-Imporant to note, last operation in Tanh activation, that scales action output to required env. spec (-1,1).
+Simple Fully connected network.  
+FC: (33) -> (400) -> (300) -> (4) with ReLu actiovations.  
+Imporant to note, last operation in Tanh activation, that scales action output to required env. spec (-1,1).  
 You can do sigmoid and rescale if you prefer.
 
 Used to predict optimal action.
@@ -55,9 +56,9 @@ x = self.max_action * torch.tanh(self.l3(x))
 
 2. Critic a.k.a. value network.
 Again 2 critic networks are implemented inside one pytorch Module. 
-Both are symmetrical FC networks (33 + 4 /state+action/) -> (400) -> (300) ->(1) with ReLu activations.
+Both are symmetrical FC networks.
+FC: (33 + 4) -> (400) -> (300) ->(1) with ReLu activations.
 Used to predict reward for a certain action made in a certain state.
-
 
 ### Hyper-parameters.
 
