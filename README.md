@@ -12,7 +12,7 @@
 
 Repo with Implemenation of TD3 algo for Reacher 20 env. from Udacity course. First reaches reward 30 in 21 episode, gets a \[0,100\] mean of 30 in 100.  
 
-Proposed enviroment has 20 Reachers simultaneously. Is this is a sync. process, I choosed just a TD3 algo that collects expirience 20x faster with 20 hands. I see no sence in using async. approach here.
+Proposed enviroment has 20 Reachers simultaneously. As this is a sync. process, I choosed a TD3 algo that collects expirience 20x faster with 20 hands, treating them as sync. process. I see no sence in using async. approach here, as enviroment isn't truly async.
 
 #### Trained agent looks like this
 ![Trained Agent][image3]
