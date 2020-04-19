@@ -38,8 +38,35 @@ Agent get rewarded if its end is localized in a moving spherical space. Game is 
 
 
 ## About the algo and results
-I've initially tried DDPG and A2C. While I had some progress and reward was growing, training process was quite unstable. As I was still in algo. exploratory phase, I tried TD3.
-It worked like a charm from the first attempt. Why search more?  https://arxiv.org/pdf/1802.09477.pdf
+I've initially tried DDPG and A2C. While I had some progress and reward was growing, training process was quite unstable. As I was still in the exploratory phase, I switched to TD3.
+It worked like a charm from the first attempt. Why search for anything else?  https://arxiv.org/pdf/1802.09477.pdf
+
+### Neural networks details
+
+1. Actor a.k.a. policy network.
+Simple Fully connected network. (33) -> (400) -> (300) -> (4).
+Imporant to note, last operation in Tang activation, that scales action output to required env. spec (-1,1).
+You can do sigmoid and rescale if you prefer.
+
+Used to predict optimal action.
+```python
+x = self.max_action * torch.tanh(self.l3(x)) 
+```
+
+2. Critic a.k.a. value network.
+Again 2 critic networks are implemented inside one pytorch Module. 
+Both are symmetrical FC networks (33 + 4 /state+action/) -> (400) -> (300) ->(1) with ReLu activations.
+Used to predict reward for a certain action made in a certain state.
+
+
+### Hyper-parameters.
+
+policy_freq = 2 # Policy network is updated every Xnd step
+batch_size = 512 # N of samples sampled from buffer to step of training
+discount = 0.99 # reward discount
+replay_buffer = int(1e5) # size of replay buffer
+policy_noise = 0.1 # amount of noise added to predicted action
+tau = 5e-3 # How aggresive target network is updated at each update step (1 - fully update, 0 - no update)
 
 ![Reward fucntion vs episode][reward]
 
